@@ -2,20 +2,12 @@
 
 rootProject.name = "ical-proxy"
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
+pluginManagement { repositories { gradlePluginPortal() } }
 
 dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-    }
+  repositories { mavenCentral() }
 
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-}
+plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0" }

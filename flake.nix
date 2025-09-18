@@ -40,17 +40,6 @@
             allowUnfree = true;
             overlays = [
               inputs.build-gradle-application.overlays.default
-              (
-                final: _prev:
-                let
-                  j = final.jdk23;
-                in
-                {
-                  jdk = j;
-                  java = j;
-                  gradle = _prev.gradle.override { java = j; };
-                }
-              )
             ];
           };
           version = self.shortRev or "dirty";
@@ -69,27 +58,37 @@
               gradle
               jdk
               python313
+              updateVerificationMetadata
             ];
 
             env = {
               GRADLE_JAVA_HOME = "${pkgs.jdk}";
             };
 
-            shellHook = '''';
+            shellHook = ''
+              echo
+              echo "Run ./gradle_generate_metadata.sh after adding/removing dependencies"
+              echo "Use ./gradle_resolve_missing_metadata.py if you get stuck"
+              echo "Use update-verification-metadata as a last resort"
+              echo
+            '';
           };
 
-          packages.default =
-            (pkgs.callPackage ./package.nix {
-              inherit version;
-              inherit (pkgs) jdk;
-            }).overrideAttrs
-              {
-                env.JAVA_HOME = "${pkgs.jdk}";
-                env.GRADLE_JAVA_HOME = "${pkgs.jdk}";
-              };
+          packages = {
+            default =
+              (pkgs.callPackage ./package.nix {
+                inherit version;
+                inherit (pkgs) jdk;
+              }).overrideAttrs
+                {
+                  env.JAVA_HOME = "${pkgs.jdk}";
+                  env.GRADLE_JAVA_HOME = "${pkgs.jdk}";
+                };
+          };
         };
 
       flake = {
+        inherit inputs;
       };
     };
 }

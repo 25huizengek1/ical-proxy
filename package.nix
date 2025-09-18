@@ -12,6 +12,8 @@ buildGradleApplication {
 
   inherit jdk;
 
+  dependencyFilter = depSpec: depSpec.name != "${depSpec.component.name}-metadata-${depSpec.component.version}.jar";
+
   meta = with lib; {
     description = "ICalendar proxy that caches/filters any valid ICalendar url efficiently using a Redis cache";
 
