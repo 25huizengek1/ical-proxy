@@ -1,0 +1,6 @@
+/.envrc
+.gradle
+build
+/.direnv
+/result
+/.idea
