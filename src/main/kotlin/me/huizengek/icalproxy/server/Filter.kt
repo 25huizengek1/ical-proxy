@@ -131,7 +131,7 @@ fun List<VEvent>.filter(query: String): List<VEvent> {
     if (filterName == "url" || filterName == "ttl") return@forEach
 
     val filter = filters[filterName] ?: return@forEach
-    appliedFilters += filter.apply(values.last(), not)
+    appliedFilters += values.map { filter.apply(it, not) }
   }
 
   return filter { event -> appliedFilters.all { it(event) } }
