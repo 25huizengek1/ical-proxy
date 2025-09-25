@@ -34,6 +34,7 @@ object Environment {
   val PORT by env("8080")
   val HOST by env(if (DEBUG == "1") "0.0.0.0" else "127.0.0.1")
   val REDIS_ENDPOINT by env("127.0.0.1:6379")
+  val ROOT_URL by env("https://omeduostuurcentenneef.nl")
 }
 
 fun main() {

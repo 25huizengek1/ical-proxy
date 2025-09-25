@@ -7,8 +7,10 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
 import java.util.*
 
-fun RoutingContext.queryParameter(parameter: String) =
+fun RoutingContext.nullableQueryParameter(parameter: String) =
   call.queryParameters[parameter]?.trim()?.takeIf { it.isNotEmpty() }
+
+fun RoutingContext.queryParameter(parameter: String) = nullableQueryParameter(parameter)
     ?: badRequest("Invalid parameter ${parameter}.")
 
 class HttpResponseException(val code: HttpStatusCode, val body: String, cause: Throwable? = null) :
