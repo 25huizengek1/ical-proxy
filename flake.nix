@@ -51,8 +51,8 @@
           };
           version = self.shortRev or "dirty";
           env = {
-            JAVA_HOME = "${pkgs.jdk}";
-            GRADLE_JAVA_HOME = "${pkgs.jdk}";
+            JAVA_HOME = pkgs.jdk.home;
+            GRADLE_JAVA_HOME = pkgs.jdk.home;
           };
         in
         {
