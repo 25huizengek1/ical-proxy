@@ -61,7 +61,6 @@
           treefmt = {
             programs.nixfmt.enable = true;
             programs.shellcheck.enable = true;
-            programs.ruff.enable = true;
           };
 
           devShells.default = pkgs.mkShellNoCC {
